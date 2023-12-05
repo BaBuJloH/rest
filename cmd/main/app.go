@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"fmt"
 	"net"
 	"net/http"
@@ -10,8 +9,6 @@ import (
 	"path/filepath"
 	"rest/internal/config"
 	"rest/internal/user"
-	"rest/internal/user/db"
-	"rest/pkg/client/mongodb"
 	"rest/pkg/logging"
 	"time"
 
@@ -25,15 +22,12 @@ func main() {
 
 	cfg := config.GetConfig()
 
-	cfgMongo := cfg.MongoDB
-	mongoDBClient, err := mongodb.NewClient(context.Background(), cfgMongo.Host, cfgMongo.Port, cfgMongo.Username, cfgMongo.Password, cfgMongo.Database, cfgMongo.AuthDB)
-	if err != nil {
-		panic(err)
-	}
-	storage := db.NewStorage(mongoDBClient, cfg.MongoDB.Collection, logger)
-
-	users, err := storage.FindAll(context.Background())
-	fmt.Println(users)
+	// cfgMongo := cfg.MongoDB
+	// mongoDBClient, err := mongodb.NewClient(context.Background(), cfgMongo.Host, cfgMongo.Port, cfgMongo.Username, cfgMongo.Password, cfgMongo.Database, cfgMongo.AuthDB)
+	// if err != nil {
+	// 	panic(err)
+	// }
+	// storage := db.NewStorage(mongoDBClient, cfg.MongoDB.Collection, logger)
 
 	logger.Info("register user handler")
 	handler := user.NewHandler(logger)

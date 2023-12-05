@@ -1,2 +1,0 @@
-time="2023-11-26T03:58:00+03:00" level=info msg="create router" func="main.main()" file="app.go: 23"
-time="2023-11-26T03:58:00+03:00" level=info msg="read application configuration" func="rest/internal/config.GetConfig.func1()" file="config.go: 35"
